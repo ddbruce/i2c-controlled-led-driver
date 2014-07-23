@@ -4,6 +4,7 @@
 #include <fcntl.h>
 #include <linux/i2c-dev.h>
 #include <sys/ioctl.h>
+#include <iomanip>
 
 using namespace std;
 
@@ -39,6 +40,8 @@ int initializechip(int file, int chip) {
 
 int main() {
 
+	cout << "Initializing PWM chips..." << endl;
+
 	int file;
 	char *filename = "/dev/i2c-0";
 	if ((file = open(filename, O_RDWR)) < 0) {
@@ -49,9 +52,11 @@ int main() {
 	for (int x = 0; x < 64 x++) {
 		if (x==48)
 			continue;
-		initializechip(file,x);
+		if (initializechip(file,x) == 0) {
+			cout << "Found chip at address " << hex << x | 0x40 << endl;
+		}
 	}
-
+	
 	close(file);
 
 	return 0;

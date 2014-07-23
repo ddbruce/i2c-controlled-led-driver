@@ -38,6 +38,7 @@ int setPWM(int channel, int value, int file) {
 		return 1;
 	}
 
+	return 0;
 }
 
 int main(int argc, char *argv[]) {
