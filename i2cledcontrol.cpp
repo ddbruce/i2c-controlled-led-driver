@@ -27,12 +27,17 @@ int setPWM(int channel, int value, int file) {
 	uint8_t bytestowrite[5];
 
 	bytestowrite[0] = LED0_ON_L+4*(channel%16);
+	bytestowrite[1] = 0;
+	bytestowrite[2] = 0;
+	bytestowrite[3] = value*16;
+	bytestowrite[4] = (value*16) >> 8;
 
 
 	if (write(file,bytestowrite,5) != 5) {
-		cerr << "Failed to write to the i2c bus." << endl;
+		cerr << "Failed to write to the i2c bus..." << endl;
 		return 1;
 	}
+
 }
 
 int main(int argc, char *argv[]) {
