@@ -4,6 +4,8 @@
 #include <fcntl.h>
 #include <linux/i2c-dev.h>
 #include <sys/ioctl.h>
+#include <unistd.h>
+
 
 using namespace std;
 
@@ -57,7 +59,7 @@ int main(int argc, char *argv[]) {
 	//cout << "R=" << int(red) << " G=" << int(green) << " B=" << int(blue) << endl;
 
 	int file;
-	char *filename = "/dev/i2c-0";
+	const char *filename = "/dev/i2c-0";
 	if ((file = open(filename, O_RDWR)) < 0) {
 		cerr << "Failed to open the i2c bus..." << endl;
 		return 1;
