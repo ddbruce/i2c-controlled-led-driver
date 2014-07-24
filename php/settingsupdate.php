@@ -31,11 +31,11 @@ construe any copyright obligations to Rensselaer.
 
 $colors = $_POST["colors"];
 $settings = $_POST["settings"];
-$com0 = "ledcontrol 0 ".substr($colors,0,6);
-$com1 = "ledcontrol 1 ".substr($colors,7,6);
-$com2 = "ledcontrol 2 ".substr($colors,14,6);
-$com3 = "ledcontrol 3 ".substr($colors,21,6);
-$com4 = "ledcontrol 4 ".substr($colors,28,6);
+$com0 = "i2cledcontrol 0 ".substr($colors,0,6);
+$com1 = "i2cledcontrol 1 ".substr($colors,7,6);
+$com2 = "i2cledcontrol 2 ".substr($colors,14,6);
+$com3 = "i2cledcontrol 3 ".substr($colors,21,6);
+$com4 = "i2cledcontrol 4 ".substr($colors,28,6);
 $output0 = shell_exec($com0);
 $output1 = shell_exec($com1);
 $output2 = shell_exec($com2);

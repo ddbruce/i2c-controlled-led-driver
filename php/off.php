@@ -30,7 +30,7 @@ construe any copyright obligations to Rensselaer.
 */
 
 for ($x = 0; $x < 5; $x++) {
-	$com = "ledcontrol ".$x." 000000";
+	$com = "i2cledcontrol ".$x." 000000";
 	$output = shell_exec($com);
 	file_put_contents("data/state.js", '{"state":"off"}');
 }
