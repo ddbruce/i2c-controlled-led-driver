@@ -35,7 +35,6 @@ construe any copyright obligations to Rensselaer.
 #include <sys/ioctl.h>
 #include <unistd.h>
 
-
 using namespace std;
 
 #define LED0_ON_L 0x6
