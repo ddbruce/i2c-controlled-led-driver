@@ -51,7 +51,6 @@ int initializechip(int file, int chip) {
 	bytestowrite[1] = 0xa1;
 
 	if (write(file,bytestowrite,sizeof(bytestowrite)) != sizeof(bytestowrite)) {
-		cerr << "Failed to initialze properly.." << endl;
 		return 1;
 	}
 
@@ -61,7 +60,6 @@ int initializechip(int file, int chip) {
 	bytestowrite[1] = 0x04;
 
 	if (write(file,bytestowrite,sizeof(bytestowrite)) != sizeof(bytestowrite)) {
-		cerr << "Failed to initialize properly..." << endl;
 		return 1;
 	}
 
@@ -69,11 +67,12 @@ int initializechip(int file, int chip) {
 }
 
 int main() {
+	int chips_found = 0;
 
 	cout << "Initializing PWM chips..." << endl;
 
 	int file;
-	const char *filename = "/dev/i2c-0";
+	const char *filename = "/dev/i2c-1";
 	if ((file = open(filename, O_RDWR)) < 0) {
 		cerr << "Failed to open the i2c bus..." << endl;
 		return 1;
@@ -84,7 +83,13 @@ int main() {
 			continue;
 		if (initializechip(file,x) == 0) {
 			cout << "Found chip at address " << hex << (x | 0x40) << endl;
-		}
+			chips_found++;
+		} 	
+	}
+
+
+	if (chips_found == 0) {
+		cout << "Error: no chips found!" << endl;
 	}
 	
 	close(file);
