@@ -34,11 +34,12 @@ construe any copyright obligations to Rensselaer.
 #include <linux/i2c-dev.h>
 #include <sys/ioctl.h>
 #include <iomanip>
+#include <unistd.h>
 
 using namespace std;
 
 int initializechip(int file, int chip) {
-	int address = (channel/16) | 0x40;
+	int address = (chip) | 0x40;
 	if (ioctl(file, I2C_SLAVE, address) < 0) {
 		cerr << "Failed to acquire bus access and/or talk to slave..." << endl;
 		return 1;
@@ -72,17 +73,17 @@ int main() {
 	cout << "Initializing PWM chips..." << endl;
 
 	int file;
-	char *filename = "/dev/i2c-0";
+	const char *filename = "/dev/i2c-0";
 	if ((file = open(filename, O_RDWR)) < 0) {
 		cerr << "Failed to open the i2c bus..." << endl;
 		return 1;
 	}
 
-	for (int x = 0; x < 64 x++) {
+	for (int x = 0; x < 64; x++) {
 		if (x==48)
 			continue;
 		if (initializechip(file,x) == 0) {
-			cout << "Found chip at address " << hex << x | 0x40 << endl;
+			cout << "Found chip at address " << hex << (x | 0x40) << endl;
 		}
 	}
 	
