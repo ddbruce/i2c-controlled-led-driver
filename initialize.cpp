@@ -56,6 +56,29 @@ int initializechip(int file, int chip) {
 
 	usleep(500);
 
+	bytestowrite[0] = 0x00;
+	bytestowrite[1] = 0x30;
+
+	if (write(file,bytestowrite,sizeof(bytestowrite)) != sizeof(bytestowrite)) {
+		return 1;
+	}
+
+	bytestowrite[0] = 0xfe;
+	bytestowrite[1] = 0x03;
+
+	if (write(file,bytestowrite,sizeof(bytestowrite)) != sizeof(bytestowrite)) {
+		return 1;
+	}
+
+	bytestowrite[0] = 0x00;
+	bytestowrite[1] = 0x20;
+
+	if (write(file,bytestowrite,sizeof(bytestowrite)) != sizeof(bytestowrite)) {
+		return 1;
+	}
+
+	usleep(500);
+
 	bytestowrite[0] = 0x01;
 	bytestowrite[1] = 0x04;
 
