@@ -87,7 +87,7 @@ int main(int argc, char *argv[]) {
 	//cout << "R=" << int(red) << " G=" << int(green) << " B=" << int(blue) << endl;
 
 	int file;
-	const char *filename = "/dev/i2c-1";
+	const char *filename = "/dev/i2c-0";
 	if ((file = open(filename, O_RDWR)) < 0) {
 		cerr << "Failed to open the i2c bus..." << endl;
 		return 1;
