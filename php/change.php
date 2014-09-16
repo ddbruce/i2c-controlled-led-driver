@@ -32,7 +32,7 @@ construe any copyright obligations to Rensselaer.
 $channel = $_POST["channel"];
 $color = $_POST["color"];
 $settings = $_POST["settings"];
-$com = "i2cledcontrol".' '.escapeshellarg($color).' '.escapeshellarg($channel);
+$com = "i2cledcontrol".' '.escapeshellarg($channel).' '.escapeshellarg($color);
 $output0 = shell_exec($com);
 file_put_contents("data/settings.js", $settings);
 ?>
